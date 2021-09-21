@@ -56,7 +56,37 @@ class BinarySearchTree{
         }   
 
         if(!found) return false;
-        
+
         return current;
     }
+    //  breadth first search 
+    bfs(){
+        var node = this.root,
+            data = [],
+            queue = [];
+        queue.push(node);
+
+        while(queue.length){
+            node = queue.shift();
+            data.push(node.value);
+            if(node.left) queue.push(node.left);
+            if(node.right) queue.push(node.right);
+        }
+
+        return data;
+
+    }
+    //  depth first  preOrder 
+    DFSInOrder(){
+        var data = [];
+        function traverse(node){
+            if(node.left) traverse(node.left);
+            data.push(node.value);
+            if(node.right) traverse(node.right);
+        }
+        traverse(this.root);
+        return data;
+    }
+}
+
 }
